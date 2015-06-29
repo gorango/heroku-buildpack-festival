@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+
+function error() {
+  echo " !     $*" >&2
+  exit 1
+}
+
+function topic() {
+  echo "-----> $*"
+}
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+apt-get install festival festlex-cmu festlex-poslex festlex-oald libestools1.2 unzip
+
+mkdir cmu_tmp
+cd cmu_tmp/
+wget -c http://www.speech.cs.cmu.edu/cmu_arctic/packed/cmu_us_rms_arctic-0.95-release.tar.bz2
+tar xf cmu_us_rms_arctic-0.95-release.tar.bz2
+rm cmu_us_rms_arctic-0.95-release.tar.bz2
+
+sudo mkdir -p /usr/share/festival/voices/english/
+sudo mv * /usr/share/festival/voices/english/
+
+for d in `ls /usr/share/festival/voices/english` ; do
+if [[ "$d" =~ "cmu_us_" ]] ; then
+sudo mv "/usr/share/festival/voices/english/${d}" "/usr/share/festival/voices/english/${d}_clunits" 
+fi ; done
+
