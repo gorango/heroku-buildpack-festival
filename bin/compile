@@ -29,15 +29,7 @@ function indent() {
   esac
 }
 
-<<<<<<< HEAD
 apt-get install festival festlex-cmu festlex-poslex festlex-oald libestools1.2 unzip
-=======
-
-
-topic("Fetching dependencies")
-
-apt-get install festival festlex-cmu festlex-poslex festlex-oald libestools1.2 unzip | indent
->>>>>>> f967dc9260921517422d2bfc8a6fdb43f1f68498
 
 mkdir cmu_tmp
 cd cmu_tmp/
