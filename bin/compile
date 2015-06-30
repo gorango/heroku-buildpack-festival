@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin sh
 # bin/compile <build-dir> <cache-dir>
 
 # fail fast
@@ -7,36 +7,27 @@ set -e
 # debug
 # set -x
 
-function error() {
-  echo " !     $*" >&2
-  exit 1
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
 }
 
-function topic() {
-  echo "-----> $*"
-}
+echo "-----> Installing festival"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festival-2.4-release.tar.gz"
 
-function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
-}
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
 
-apt-get install festival festlex-cmu festlex-poslex festlex-oald libestools1.2 unzip
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+curl -L --silent $DOWNLOAD_URL | tar xz
 
-mkdir cmu_tmp
-cd cmu_tmp/
-wget -c http://www.speech.cs.cmu.edu/cmu_arctic/packed/cmu_us_rms_arctic-0.95-release.tar.bz2
-tar xf cmu_us_rms_arctic-0.95-release.tar.bz2
-rm cmu_us_rms_arctic-0.95-release.tar.bz2
-
-mkdir -p /usr/share/festival/voices/english/
-mv * /usr/share/festival/voices/english/
-
-for d in `ls /usr/share/festival/voices/english` ; do
-if [[ "$d" =~ "cmu_us_" ]] ; then
-mv "/usr/share/festival/voices/english/${d}" "/usr/share/festival/voices/english/${d}_clunits" 
-fi ; done
+echo "exporting PATH and LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:vendor/festival/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/festival/lib"' >> $PROFILE_PATH
 

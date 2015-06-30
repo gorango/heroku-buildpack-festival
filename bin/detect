@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin sh
 
 echo "Festival"
 exit 0
