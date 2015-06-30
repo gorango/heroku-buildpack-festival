@@ -16,16 +16,16 @@ FEST_DIR="festival"
 VOICES_DIR="voices"
 
 # config
-VERSION="latest"
+VERSION="2.4"
 
 # URLs
-SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/speech_tools-2.1-release.tar.gz"
-FEST_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festival-2.1-release.tar.gz"
+SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/speech_tools-${VERSION}-release.tar.gz"
+FEST_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festival-${VERSION}-release.tar.gz"
 FESTLEX_CMU_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_CMU.tar.gz"
 FESTLEX_OALD_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_OALD.tar.gz"
 FESTLEX_POSLEX_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_POSLEX.tar.gz"
-VOICE_KAL_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festvox_kallpc16k.tar.gz"
-VOICE_RAB_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festvox_rablpc16k.tar.gz"
+VOICE_KAL_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/voices/festvox_kallpc16k.tar.gz"
+VOICE_RAB_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/voices/festvox_rablpc16k.tar.gz"
 
 echo "-----> Installing festival"
 echo "SPEECHTOOLS_DOWNLOAD_URL = " $SPEECHTOOLS_DOWNLOAD_URL | indent
