@@ -1,31 +1,33 @@
 #!/bin/sh
 
-# fail fast
 set -e
-
-# debug
-# set -x
-
-#!/bin/sh
 
 indent() {
   sed -u 's/^/       /'
 }
 
-echo "-----> Installing festival"
+# dirs
+BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 BUILD_DIR=$1
+CACHE_DIR=$2
 VENDOR_DIR="vendor"
-SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/speech_tools-2.4-release.tar.gz"
-FEST_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festival-2.4-release.tar.gz"
-FESTLEX_CMU_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_CMU.tar.gz"
-FESTLEX_OALD_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_OALD.tar.gz"
-FESTLEX_POSLEX_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_POSLEX.tar.gz"
-VOICE_KAL_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/voices/festvox_kallpc16k.tar.gz"
-VOICE_RAB_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/voices/festvox_rablpc16k.tar.gz"
 SPEECHTOOLS_DIR="speech_tools"
 FEST_DIR="festival"
 VOICES_DIR="voices"
 
+# config
+VERSION="2.4"
+
+# URLs
+SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/speech_tools-${VERSION}-release.tar.gz"
+FEST_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festival-${VERSION}-release.tar.gz"
+FESTLEX_CMU_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_CMU.tar.gz"
+FESTLEX_OALD_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_OALD.tar.gz"
+FESTLEX_POSLEX_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/festlex_POSLEX.tar.gz"
+VOICE_KAL_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/voices/festvox_kallpc16k.tar.gz"
+VOICE_RAB_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/voices/festvox_rablpc16k.tar.gz"
+
+echo "-----> Installing festival"
 echo "SPEECHTOOLS_DOWNLOAD_URL = " $SPEECHTOOLS_DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
@@ -53,6 +55,4 @@ curl -L --silent $VOICE_RAB_DOWNLOAD_URL | tar xz
 echo "exporting PATH and LIBRARY_PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
 mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:vendor/festival/bin"' >> $PROFILE_PATH
-echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/festival/lib"' >> $PROFILE_PATH
-
+echo 'export PATH="$PATH:vendor/festival/lib"' >> $PROFILE_PATH
