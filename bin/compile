@@ -16,7 +16,7 @@ FEST_DIR="festival"
 VOICES_DIR="voices"
 
 # config
-VERSION="2.1"
+VERSION="latest"
 
 # URLs
 SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/${VERSION}/speech_tools-${VERSION}-release.tar.gz"
