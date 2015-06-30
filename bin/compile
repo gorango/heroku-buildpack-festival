@@ -43,12 +43,12 @@ cd $FEST_DIR
 make
 cd ..
 
-curl -L --sild $FESTLEX_CMU_DOWNLOAD_URL | tar xz
-curl -L --sild $FESTLEX_OALD_DOWNLOAD_URL | tar xz
-curl -L --sild $FESTLEX_POSLEX_DOWNLOAD_URL | tar xz
+curl -L --silent $FESTLEX_CMU_DOWNLOAD_URL | tar xz
+curl -L --silent $FESTLEX_OALD_DOWNLOAD_URL | tar xz
+curl -L --silent $FESTLEX_POSLEX_DOWNLOAD_URL | tar xz
 
-curl -L --sild $VOICE_KAL_DOWNLOAD_URL | tar xz
-curl -L --sild $VOICE_RAB_DOWNLOAD_URL | tar xz
+curl -L --silent $VOICE_KAL_DOWNLOAD_URL | tar xz
+curl -L --silent $VOICE_RAB_DOWNLOAD_URL | tar xz
 
 echo "exporting PATH and LIBRARY_PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
