@@ -1,12 +1,5 @@
 # Heroku Buildpack for Festival
 
+## Don't use this! It's broken!
 
-
-## Usage
-
-Use [buildpack-multi][] to cascade [buildpack-festival][].
-
-[buildpack-multi]: https://github.com/ddollar/heroku-buildpack-multi
-[buildpack-nodejs]: https://github.com/heroku/heroku-buildpack-nodejs
-[Festival]: http://www.cstr.ed.ac.uk/projects/festival/
-=======
+Here for testing purposes only...

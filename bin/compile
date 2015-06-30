@@ -15,14 +15,40 @@ indent() {
 echo "-----> Installing festival"
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
-DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festival-2.4-release.tar.gz"
+SPEECHTOOLS_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/speech_tools-2.4-release.tar.gz"
+FEST_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festival-2.4-release.tar.gz"
+FESTLEX_CMU_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_CMU.tar.gz"
+FESTLEX_OALD_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_OALD.tar.gz"
+FESTLEX_POSLEX_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/festlex_POSLEX.tar.gz"
+VOICE_KAL_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/voices/festvox_kallpc16k.tar.gz"
+VOICE_RAB_DOWNLOAD_URL="http://festvox.org/packed/festival/2.4/voices/festvox_rablpc16k.tar.gz"
+SPEECHTOOLS_DIR="speech_tools"
+FEST_DIR="festival"
+VOICES_DIR="voices"
 
-echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+echo "SPEECHTOOLS_DOWNLOAD_URL = " $SPEECHTOOLS_DOWNLOAD_URL | indent
 
 cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
-curl -L --silent $DOWNLOAD_URL | tar xz
+curl -L --silent $SPEECHTOOLS_DOWNLOAD_URL | tar xz
+cd $SPEECHTOOLS_DIR
+make
+cd ..
+
+echo "FEST_DOWNLOAD_URL = " $FEST_DOWNLOAD_URL | indent
+
+curl -L --silent $FEST_DOWNLOAD_URL | tar xz
+cd $FEST_DIR
+make
+cd ..
+
+curl -L --sild $FESTLEX_CMU_DOWNLOAD_URL | tar xz
+curl -L --sild $FESTLEX_OALD_DOWNLOAD_URL | tar xz
+curl -L --sild $FESTLEX_POSLEX_DOWNLOAD_URL | tar xz
+
+curl -L --sild $VOICE_KAL_DOWNLOAD_URL | tar xz
+curl -L --sild $VOICE_RAB_DOWNLOAD_URL | tar xz
 
 echo "exporting PATH and LIBRARY_PATH" | indent
 PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
