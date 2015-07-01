@@ -35,17 +35,17 @@ mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $SPEECHTOOLS_DOWNLOAD_URL | tar xz
 cd $SPEECHTOOLS_DIR
-# make --silent
-# make install
+make
+make install
 cd ..
 
 echo "FEST_DOWNLOAD_URL = " $FEST_DOWNLOAD_URL | indent
 
 curl -L --silent $FEST_DOWNLOAD_URL | tar xz
-# cd $FEST_DIR
-# make --silent
-# make install
-# cd ..
+cd $FEST_DIR
+make
+make install
+cd ..
 
 curl -L --silent $FESTLEX_CMU_DOWNLOAD_URL | tar xz
 curl -L --silent $FESTLEX_OALD_DOWNLOAD_URL | tar xz
@@ -54,8 +54,8 @@ curl -L --silent $FESTLEX_POSLEX_DOWNLOAD_URL | tar xz
 curl -L --silent $VOICE_KAL_DOWNLOAD_URL | tar xz
 curl -L --silent $VOICE_RAB_DOWNLOAD_URL | tar xz
 
-# echo "exporting PATH and LIBRARY_PATH" | indent
-# PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
-# mkdir -p $(dirname $PROFILE_PATH)
-# echo 'export PATH="$PATH:vendor/festival/bin"' >> $PROFILE_PATH
-# echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/festival/lib"' >> $PROFILE_PATH
+echo "exporting PATH and LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/festival.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:vendor/festival/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:vendor/festival/lib"' >> $PROFILE_PATH
