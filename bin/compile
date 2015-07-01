@@ -35,14 +35,16 @@ mkdir -p $VENDOR_DIR
 cd $VENDOR_DIR
 curl -L --silent $SPEECHTOOLS_DOWNLOAD_URL | tar xz
 cd $SPEECHTOOLS_DIR
-make -s
+make --silent
+make install
 cd ..
 
 echo "FEST_DOWNLOAD_URL = " $FEST_DOWNLOAD_URL | indent
 
 curl -L --silent $FEST_DOWNLOAD_URL | tar xz
 cd $FEST_DIR
-make -s
+make --silent
+make install
 cd ..
 
 curl -L --silent $FESTLEX_CMU_DOWNLOAD_URL | tar xz
