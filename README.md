@@ -1,5 +1,5 @@
 # Heroku Buildpack for Festival
 
-## Don't use this! It's broken!
+Compile [festival][] and its dependencies for Heroku Cedar-14 stack
 
-Here for testing purposes only...
+TODO: Still needs audio drivers to run text2wave
