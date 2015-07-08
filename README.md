@@ -1,5 +1,5 @@
 # Heroku Buildpack for Festival
 
-Compile [festival][] and its dependencies for Heroku Cedar-14 stack
+Compile [The Festival Speech Synthesis System](http://www.cstr.ed.ac.uk/projects/festival/) and its dependencies on Heroku Cedar-14 stack
 
-TODO: Still needs audio drivers to run text2wave
+TODO: Audio drivers to run text2wave
